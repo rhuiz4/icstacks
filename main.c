@@ -21,9 +21,9 @@ int main(int argc, char **argv) {
   polygons = new_matrix(4, 4);
 
   if ( argc == 2 )
-    parse_file( argv[1], transform, edges, polygons, s );
+    parse_file( argv[1], transform, edges, s );
   else
-    parse_file( "stdin", transform, edges, polygons, s );
+    parse_file( "stdin", transform, edges, s );
 
   free_matrix( edges );
   free_matrix( transform );

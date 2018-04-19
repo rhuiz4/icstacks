@@ -109,7 +109,7 @@ void parse_file ( char * filename,
     char axis;
     int type;
     int step = 100;
-    int step_3d = 10;
+    int step_3d = 30;
 
     if ( strncmp(line, "box", strlen(line)) == 0 ) {
       fgets(line, sizeof(line), f);
@@ -157,7 +157,7 @@ void parse_file ( char * filename,
              xvals, yvals, zvals, &r);
       add_circle( edges, xvals[0], yvals[0], zvals[0], r, step);
       matrix_mult(peek(coords), edges);
-      draw_polygons(edges, s, c);
+      draw_lines(edges, s, c);
       edges->lastcol = 0;
     }//end of circle
 
@@ -183,7 +183,7 @@ void parse_file ( char * filename,
       add_curve( edges, xvals[0], yvals[0], xvals[1], yvals[1],
                  xvals[2], yvals[2], xvals[3], yvals[3], step, type);
       matrix_mult(peek(coords), edges);
-      draw_polygons(edges, s, c);
+      draw_lines(edges, s, c);
       edges->lastcol = 0;
     }//end of curve
 
@@ -200,7 +200,7 @@ void parse_file ( char * filename,
       add_edge(edges, xvals[0], yvals[0], zvals[0],
                xvals[1], yvals[1], zvals[1]);
       matrix_mult(peek(coords), edges);
-      draw_polygons(edges, s, c);
+      draw_lines(edges, s, c);
       edges->lastcol = 0;
     }//end line
 
@@ -279,8 +279,8 @@ void parse_file ( char * filename,
       fgets(line, sizeof(line), f);
       *strchr(line, '\n') = 0;
       //printf("SAVE\t%s\n", line);
-      clear_screen(s);
-      draw_lines(edges, s, c);
+      //clear_screen(s);
+      //draw_lines(edges, s, c);
       //draw_polygons(polygons, s, c);
       save_extension(s, line);
     }//end save
